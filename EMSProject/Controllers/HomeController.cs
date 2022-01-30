@@ -22,12 +22,11 @@ namespace EMSProject.Controllers
         }
 
         public IActionResult Index()
-        {
-            
+        {   
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Create()
         {
             return View();
         }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EMSProject.Migrations
 {
     [DbContext(typeof(EMSDBContext))]
-    [Migration("20220127082230_m1")]
+    [Migration("20220127172559_m1")]
     partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

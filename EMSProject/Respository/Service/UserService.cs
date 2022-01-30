@@ -62,7 +62,10 @@ namespace EMSProject.Respository.Service
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new System.Net.NetworkCredential("sandeshlodhinarvariya@gmail.com", "Sandesh@123"); // Enter seders User name and password  
+            // My Id is => forprojectemailid@gmail.com : password = "Project@123" : ConnectWith = 7470552359 
+            // Login Id => go to Manage Yor Google Account => go to Security => Signing in to Google => on 2Step Verification and go to App Password => Login => SMTP.Enablessl
+
+            smtp.Credentials = new System.Net.NetworkCredential("forprojectemailid@gmail.com", "mrpikzgbentksqhv"); // Enter seders User name and password  
             smtp.EnableSsl = true;
             smtp.Send(mail);
             

@@ -13,7 +13,7 @@ namespace EMSProject.Models
         public DbSet<Users> Users { get; set; }
         public DbSet<VerifyAccount>  VerifyAccounts { get; set; }
         public DbSet<Department> Departments { get; set; }
-        public DbSet<Employees> Employees { get; set; }
+        public DbSet<Employees> employees { get; set; }
 
     }
 }

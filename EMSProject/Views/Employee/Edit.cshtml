@@ -1,0 +1,57 @@
+﻿@model EMSProject.Models.Employees
+
+
+<div class="align-self-center">
+    <div class="card">
+        <div class="card-header">
+            <H1>Create Employee</H1>
+            
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" asp-controller="Employee" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="FirstName"></label>
+                    <input asp-for="FirstName" class="form-control" placeholder="First name"/>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="LastName"></label>
+                    <input asp-for="LastName" class="form-control" placeholder="Last name"/>
+                </div>
+
+                @*<div class="form-group">
+                    <label asp-for="Department"></label>
+                    <select asp-for="Department" class="form-control">
+                        @foreach (var item in ViewBag.Dep)
+                       {
+                        <option value='@item.Id'>@item.Name</option>
+                       }
+                    </select>
+                </div>*@
+
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" placeholder="Email Id"/>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Mobile">Mobile</label>
+                    <input asp-for="Mobile" class="form-control" placeholder="Contect"/>
+                </div>
+                <div class="form-group">
+                    <label>Please select Image</label>
+                    <input type="file" name="Image" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="IsActive"></label>
+                    <select asp-for="IsActive" class="form-control">
+                        <option value="true">IsActive</option>
+                        <option value="false">InActive</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
