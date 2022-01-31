@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
+using Microsoft.EntityFrameworkCore;
 
 namespace EMSProject.Controllers
 {
@@ -28,25 +29,26 @@ namespace EMSProject.Controllers
         { 
             return View();
         }
+
         [HttpPost]
         public IActionResult Index(Employees employees)
         {
-            var files = Request.Form.Files;
+            var files = Request.Form.Files; 
             string dbPath = string.Empty;
             if (files.Count > 0)
             {
                 //Image path Create code
                 string path = Environment.WebRootPath;
-                string fullpath = Path.Combine(path, "Image", files[0].FileName);
+                string fullpath = Path.Combine(path, "image", files[0].FileName);
 
-                dbPath = "Image/" + files[0].FileName;
+                dbPath = "image/" + files[0].FileName;
                 FileStream stream = new FileStream(fullpath, FileMode.Create);
 
                 files[0].CopyTo(stream);
             }
 
 
-            employees.Image = dbPath;
+            employees.ImageUrl = dbPath;
             EMSDBContext.employees.Add(employees);
             EMSDBContext.SaveChanges();
             return RedirectToAction("ShowAll");
@@ -58,42 +60,98 @@ namespace EMSProject.Controllers
             return View(Emp);
         }
 
-        [HttpGet]
+       
+
+        
+
         public IActionResult Edit(int Id)
         {
-            var emp = EMSDBContext.employees.Where(e => e.Id == Id).FirstOrDefault();
-            return View(emp);
-        }
-        [HttpPost]
-        public IActionResult Edit(Employees emp)
-        {
-            var files = Request.Form.Files;
-            string dbPath = string.Empty;
-            if (files.Count > 0)
+            if (Id == null)
             {
-                //Image path Create code
-                string path = Environment.WebRootPath;
-                string fullpath = Path.Combine(path, "Image", files[0].FileName);
+                return NotFound();
+            }
+            var Employee = EMSDBContext.employees.Find(Id);
+            if (Employee == null)
+            {
+                return NotFound();
+            }
+            return View(Employee);
+        }
 
-                dbPath = "Image/" + files[0].FileName;
-                FileStream stream = new FileStream(fullpath, FileMode.Create);
 
-                files[0].CopyTo(stream);
+        [HttpPost]
+        public IActionResult Edit(int Id, [Bind("Id,FirstName,LastName,Email,Mobile")] Employees employees)
+        {
+            if (Id != employees.Id)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var files = Request.Form.Files;
+                    string dbPath = string.Empty;
+                    if (files.Count > 0)
+                    {
+                        //Image path Create code
+                        string path = Environment.WebRootPath;
+                        string fullpath = Path.Combine(path, "image", files[0].FileName);
+
+                        dbPath = "image/" + files[0].FileName;
+                        FileStream stream = new FileStream(fullpath, FileMode.Create);
+
+                        files[0].CopyTo(stream);
+                    }
+                    employees.ImageUrl = dbPath;
+                    EMSDBContext.Update(employees);
+                    EMSDBContext.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!employeeExists(employees.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(ShowALl));
+            }
+            return View(employees);
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
             }
 
+            var employee = EMSDBContext.employees
+                .FirstOrDefault(m => m.Id == id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
 
-            emp.Image = dbPath;
-            EMSDBContext.Entry(emp).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            EMSDBContext.SaveChanges();
-            return RedirectToAction("Index");
+            return View(employee);
         }
 
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public IActionResult Delete(int Id)
         {
-            var emp = EMSDBContext.employees.FirstOrDefault(e => e.Id == Id);
-            EMSDBContext.employees.Remove(emp);
+            var Emp = EMSDBContext.employees.Find(Id);
+            EMSDBContext.employees.Remove(Emp);
             EMSDBContext.SaveChanges();
-            return RedirectToAction("ShowAll");
+            return RedirectToAction(nameof(ShowALl));
+        }
+        private bool employeeExists(int id)
+        {
+            return EMSDBContext.employees.Any(e => e.Id == id);
         }
 
     }

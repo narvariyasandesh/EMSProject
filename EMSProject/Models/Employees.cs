@@ -14,7 +14,7 @@ namespace EMSProject.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Mobile { get; set; }
-        public string Image { get; set; }
+        public string ImageUrl { get; set; }
         public bool IsActive { get; set; }
     }
 }

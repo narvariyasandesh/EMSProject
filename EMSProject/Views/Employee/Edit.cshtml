@@ -43,15 +43,19 @@
                     <input type="file" name="Image" class="form-control"/>
                 </div>
 
-                <div class="form-group">
+                @*<div class="form-group">
                     <label asp-for="IsActive"></label>
                     <select asp-for="IsActive" class="form-control">
                         <option value="true">IsActive</option>
                         <option value="false">InActive</option>
                     </select>
-                </div>
+                </div>*@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
+
     </div>
+    <div>
+    <a asp-action="ShowAll">Back to List</a>
+</div>
 </div>

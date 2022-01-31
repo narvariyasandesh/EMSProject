@@ -6,7 +6,7 @@
                 <h4 class="card-title">Update Profile Picture</h4>
             </div>
             <div class="card-body">
-                <form asp-action="UpdateProfile" asp-controller="Account" method="post">
+                <form asp-action="UpdateProfile" asp-controller="Account" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <input type="hidden" name="Email" value="@User.Identity.Name" />
                         <label>Please select Image</label>

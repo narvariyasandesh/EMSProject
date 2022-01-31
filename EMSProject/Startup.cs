@@ -60,7 +60,7 @@ namespace EMSProject
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=EMployee}/{action=ShowAll}/{id?}");
             });
         }
     }

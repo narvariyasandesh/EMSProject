@@ -21,7 +21,7 @@ namespace EMSProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employees",
+                name: "employees",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -35,7 +35,7 @@ namespace EMSProject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.Id);
+                    table.PrimaryKey("PK_employees", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,7 +79,7 @@ namespace EMSProject.Migrations
                 name: "Departments");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "employees");
 
             migrationBuilder.DropTable(
                 name: "Users");

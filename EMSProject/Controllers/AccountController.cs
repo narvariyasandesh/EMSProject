@@ -81,7 +81,7 @@ namespace EMSProject.Controllers
         public string UploadProfile(IFormFile file)
         {
           var www= hostingEnvironment.ContentRootPath;
-            var fullpath = Path.Combine(www,"images",file.FileName);
+            var fullpath = Path.Combine(www,"wwwroot","images",file.FileName);
 
             FileStream stream = new FileStream(fullpath, FileMode.Create);         
             file.CopyTo(stream);
@@ -155,6 +155,12 @@ namespace EMSProject.Controllers
                 ModelState.AddModelError(string.Empty, "Please enter OTP");
                 return View();
             }
+        }
+
+        [HttpGet]
+        public IActionResult forgetPassword(string Email)
+        {
+            return View();
         }
 
     }

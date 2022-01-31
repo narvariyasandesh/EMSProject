@@ -1,5 +1,6 @@
 ﻿using EMSProject.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -16,6 +17,14 @@ namespace EMSProject.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        //private EMSDBContext EMSDBContext;
+        //public IHostingEnvironment Environment { get; }
+
+        //public HomeController(EMSDBContext DbContext, IHostingEnvironment environment)
+        //{
+        //    Environment = environment;
+        //    EMSDBContext = DbContext;
+        //}
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;

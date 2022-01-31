@@ -8,22 +8,21 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    
     <header >
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
-                <a onclick="openNav()">EMSProject</a>
+                <a class="btn btn-primary" onclick="openNav()"><h2>&equiv;</h2></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon" ></a></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Welcome: @User.Identity.Name</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Welcome: @User.Identity.Name</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">SignOut</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Logout">SignOut</a>
                         </li>
                     </ul>
                 </div>
@@ -31,28 +30,27 @@
         </nav>
     </header>
     <div class="row sidenav-top">
-        <div class="col-3 sidenav" id= "mySidenav">
-
-            <ul class="navbar-nav">
+        <div class="sidenav" id= "mySidenav">
+            <ul class="navbar-dark bg-dark">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="Index">Create Employee</a>
+                    <a class="nav-link text-light" asp-area="" asp-controller="Employee" asp-action="Index">Create Employee</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="Privacy">Show All </a>
+                    <a class="nav-link text-light" asp-area="" asp-controller="Employee" asp-action="ShowAll">Show All </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="UpdateProfile">Update Profile </a>
+                    <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="UpdateProfile">Update Profile </a>
                 </li>
             </ul>
         </div>
+    </div>
         <div class="col-9" >
             <main role="main" class="pb-3" id="main">
                 @*<span onclick="openNav()">open</span>*@
                 @RenderBody()
             </main>
         </div>
-    </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
